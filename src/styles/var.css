@@ -1,0 +1,13 @@
+:root {
+  --dark: #272630;
+  --secondary: #617e5a;
+  --red: #a63232;
+  --light: #f9f8ef;
+  --font-size: 14px;
+  --card-blue-background: #abd2e8;
+  --card-red-background: #de4c6b;
+  --card-green-background: #50c190;
+  --card-yellow-background: #ffc87f;
+  --bubble-width: "240px";
+  --bubble-animation-duration: 250ms;
+}

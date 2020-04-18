@@ -6,5 +6,10 @@
 
 module.exports = {
   /* Your site config here */
-  plugins: []
+  plugins: ["gatsby-plugin-postcss"],
+  siteMetadata: {
+    title: "Bots Against Humanity",
+    titleTemplate: "%s · Artwork and More",
+    description: "Artwork about bots fighting against humanity",
+  },
 }

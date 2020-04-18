@@ -1,0 +1,11 @@
+@font-face {
+  font-family: "Andes";
+  style: normal;
+  weight: 400;
+  src: url("./fonts/andes.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Badaboom";
+  src: url("./fonts/badabb.ttf") format("truetype");
+}
