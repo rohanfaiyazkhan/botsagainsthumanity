@@ -7,13 +7,30 @@ import yellowImg from "../assets/vectors/yellow.png"
 
 import ImageCard from "./ImageCard"
 
+const links = {
+  red: "/red",
+  blue: "/blue",
+  green: "/green",
+  yellow: "/yellow",
+}
+
 const ImageGrid = () => {
   return (
     <div className="grid grid-cols-2 gap-2 md:gap-10 max-w-screen-md max-h-screen">
-      <ImageCard alt="red" imgSrc={crimsonImg} color="red" />
-      <ImageCard alt="blue" imgSrc={blueImg} color="blue" />
-      <ImageCard alt="green" imgSrc={greenImg} color="green" />
-      <ImageCard alt="yellow" imgSrc={yellowImg} color="yellow" />
+      <ImageCard alt="red" link={links.red} imgSrc={crimsonImg} color="red" />
+      <ImageCard alt="blue" link={links.blue} imgSrc={blueImg} color="blue" />
+      <ImageCard
+        alt="green"
+        link={links.green}
+        imgSrc={greenImg}
+        color="green"
+      />
+      <ImageCard
+        alt="yellow"
+        link={links.yellow}
+        imgSrc={yellowImg}
+        color="yellow"
+      />
     </div>
   )
 }
