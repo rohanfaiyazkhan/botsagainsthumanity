@@ -12,23 +12,24 @@
   height: 10px;
   visibility: hidden;
   transform: scale(1);
-  transition: transform 0.2s ease-in;
+  transition: transform 0.4s ease-in;
 }
 
 .card-link:hover .bubble {
   visibility: visible;
   transform: scale(26);
+  transition: transform 0.2s ease-in;
 }
 
 .bubble.partial {
   visibility: visible;
   transform: scale(28);
+  transition: transform 0.2s ease-in;
 }
 
 .bubble.expanded,
 .card-link:hover .bubble.expanded {
   visibility: visible;
-  transition: transform 0.4s ease-in;
   transform: scale(400);
 }
 
