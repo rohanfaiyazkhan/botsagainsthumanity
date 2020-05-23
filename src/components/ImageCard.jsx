@@ -1,7 +1,7 @@
 import React, { useState } from "react"
 import propTypes from "prop-types"
-import { motion } from "framer-motion"
 import { Link, navigate } from "gatsby"
+import cx from "classnames"
 
 const colorClasses = {
   red: "bg-red-200",
@@ -10,45 +10,50 @@ const colorClasses = {
   yellow: "bg-yellow-200",
 }
 
-const bubble = {
-  hover: { scale: 260, transition: { duration: 0.35, ease: "easeIn" } },
-  tap: { scale: 280, transition: { duration: 0.1, ease: "easeIn" } },
-  tapped: { scale: 3000, transition: { duration: 0.35, ease: "easeIn" } },
-}
+const BubbleStates = Object.freeze({
+  hidden: "hidden",
+  partial: "partial",
+  expanded: "expanded",
+})
 
 const ImageCard = ({ imgSrc, color, alt, link }) => {
-  const [animation, setAnimation] = useState({
-    base: undefined,
-    whileHover: "hover",
-    whileTap: "tap",
-  })
+  const [bubbleState, setBubbleState] = useState(BubbleStates.hidden)
+
+  const onFocus = () => setBubbleState(BubbleStates.partial)
+
+  const onBlur = () => setBubbleState(BubbleStates.hidden)
 
   const linkClickHandler = event => {
-    setAnimation({
-      base: "tapped",
-      whileHover: undefined,
-      whileTap: undefined,
-    })
     event.preventDefault()
-    setTimeout(() => {
-      navigate(link)
-    }, [350])
+    setBubbleState(BubbleStates.expanded)
   }
 
+  const onBubbleTransitionEnd = () => {
+    if (bubbleState === BubbleStates.expanded) {
+      navigate(link)
+    }
+  }
+
+  const bubbleClasses = cx("bubble", colorClasses[color], {
+    partial: bubbleState === BubbleStates.partial,
+    expanded: bubbleState === BubbleStates.expanded,
+  })
+
   return (
-    <Link to={link} onClick={linkClickHandler}>
-      <motion.div
-        whileHover={animation.whileHover}
-        className="relative col-span-2 sm:col-span-1 overflow-visible"
-        whileTap={animation.whileTap}
-        animate={animation.base}
-      >
-        <motion.div
-          className={`bubble ${colorClasses[color]}`}
-          variants={bubble}
+    <Link
+      to={link}
+      onClick={linkClickHandler}
+      onFocus={onFocus}
+      onBlur={onBlur}
+      className="card-link"
+    >
+      <div className="relative  col-span-2 sm:col-span-1 overflow-visible">
+        <div
+          className={bubbleClasses}
+          onTransitionEnd={onBubbleTransitionEnd}
         />
         <img className="relative z-10" src={imgSrc} alt={alt} />
-      </motion.div>
+      </div>
     </Link>
   )
 }
